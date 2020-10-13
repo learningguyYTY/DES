@@ -7,6 +7,10 @@ DES加密算法的实现
 
 main函数不太完善，仅仅给了一个homework3中问题2的验证，我有空会再完善，大家可以自己按需要写一下
 
+在main函数中应首先调用initial()函数为明文、密文、子密钥在堆上分配空间
+
+再给定一个key(直接给定或随机生成一个)，并调用generate_subkeys(key)生成子密钥
+
 linux下：
 
 $ gcc des.c main.c -o main
