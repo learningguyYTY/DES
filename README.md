@@ -18,3 +18,5 @@ $ gcc des.c main.c -o main
 如果您在Windows下编译，请务必确保按64位程序进行编译
 
 欢迎学习交流探讨 QQ私我就行
+
+HIT 羿天阳
