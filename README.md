@@ -3,22 +3,19 @@ DES加密算法的实现
 
 主要参考了张宇老师的PPT以及互联网上的一篇博客: http://www.hankcs.com/security/des-algorithm-illustrated.html
 
+实现了通过DES算法进行加密、解密，密钥可以选择由随机生成或是自己给定
 
-实现了通过DES算法进行加密、解密
+您也可以根据自己的需求自己实现main函数
 
-目前实现了单个块(64bit)的加密解密，有空会补一下一次性加密解密多个块的功能
-
-main函数不太完善，仅仅给了一个homework3中问题2的验证，我有空会再完善，大家可以自己按需要写一下
-
-在main函数中应首先调用initialize()函数为明文、密文、子密钥在堆上分配空间
+在您自己实现main函数中应首先调用initialize()函数为明文、密文、子密钥在堆上分配空间
 
 再给定一个key(直接给定或随机生成一个)，并调用generate_subkeys(key)生成子密钥
 
-
 linux下：
 
+```
 $ gcc des.c main.c -o main
-
+```
 
 如果您在Windows下编译，删除main.c中的第二行
 
