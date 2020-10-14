@@ -166,6 +166,7 @@ char sbox(char* input,int index){
     return S_box[64*index + 16*i + j];
 }
 
+//core function of the Feistel networks
 int mangler(char* input, char* key){
     char expand[6];
     permutation(input,expand,48,E);
@@ -183,6 +184,7 @@ int mangler(char* input, char* key){
     return *((int*)result);
 }
 
+//encrypt 1 single plaintext block of 64 bits
 void encryption_block(char* plain_block, char* cipher_block){
     char pre_block[8];
     char this_block[8];
@@ -196,6 +198,7 @@ void encryption_block(char* plain_block, char* cipher_block){
     permutation(this_block, cipher_block, 64, IP_1);
 }
 
+//decrypt 1 single ciphertext block of 64 bits
 void decryption_block(char* cipher_block, char* plain_block){
     char pre_block[8];
     char this_block[8];
@@ -205,5 +208,28 @@ void decryption_block(char* cipher_block, char* plain_block){
         char ch[4];
         *((int*)(this_block)) = (*((int*)(pre_block+4))) ^ mangler(this_block+4, subkey+i*6);
         memcpy(pre_block,this_block,8);
+    }
+    permutation(this_block, plain_block, 64, IP_1);
+}
+
+void encrypt(){
+    memset(ciphertext,0,0x400);
+    char* this_plain_block = plaintext;
+    char* this_cipher_block = ciphertext;
+    while(*((long*)this_plain_block)){
+        encryption_block(this_plain_block,this_cipher_block);
+        this_plain_block += 8;
+        this_cipher_block += 8;
+    }
+}
+
+void decrypt(){
+    memset(plaintext,0,0x400);
+    char* this_plain_block = plaintext;
+    char* this_cipher_block = ciphertext;
+    while(*((long*)this_cipher_block)){
+        decryption_block(this_cipher_block,this_plain_block);
+        this_plain_block += 8;
+        this_cipher_block += 8;
     }
 }

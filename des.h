@@ -28,3 +28,8 @@ int mangler(char* input, char* output);
 void encryption_block(char* plain_block, char* cipher_block);
 
 void decryption_block(char* cipher_block, char* plain_block);
+
+void encrypt();
+
+void decrypt();
+
